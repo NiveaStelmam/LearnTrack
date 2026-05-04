@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "tb_progress")
 @Data
@@ -22,7 +24,9 @@ public class Progress {
 
     private Boolean completed;
 
-//    @OneToOne
-//    @JoinColumn(name = "module_id")
-//    private Module module;
+    private LocalDateTime lastAccessed;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "module_id")
+    private ModuleCourse module;
 }
